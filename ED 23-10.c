@@ -1,5 +1,6 @@
- #include <stdio.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #define N 50  // Tamanho do vetor
 
@@ -39,10 +40,12 @@ void buildHeap(int heap[], int n) {
 int main() {
     int heap[N + 1];  // Vetor para armazenar os 50 elementos inteiros (índice 1 a 50)
 
-    // Preenchendo o vetor com valores inteiros (exemplo)
+    // Inicializa o gerador de números aleatórios
+    srand(time(NULL));
+
+    // Preenchendo o vetor com valores aleatórios
     for (int i = 1; i <= N; i++) {
-        printf("Digite o valor para a posição %d: ", i);
-        scanf("%d", &heap[i]);
+        heap[i] = rand() % 100;  // Gera um número aleatório entre 0 e 99
     }
 
     // Construir o heap
@@ -53,6 +56,7 @@ int main() {
     for (int i = 1; i <= N; i++) {
         printf("%d ", heap[i]);
     }
+    printf("\n");
 
     return 0;
 }
