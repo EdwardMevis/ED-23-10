@@ -37,26 +37,55 @@ void buildHeap(int heap[], int n) {
     }
 }
 
+// Função para gerar valores aleatórios
+void GeraValoresAleatorios(int *vetor) {
+    for (int i = 1; i <= N; i++) {
+        vetor[i] = rand() % 100;  // Gera um número aleatório entre 0 e 99
+    }
+}
+
+// Função para imprimir o vetor
+void imprimeVetor(int vetor[]) {
+    for (int i = 1; i <= N; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+}
+
+// Função para determinar os dois maiores elementos do vetor
+void DeterminaDoisMaioresElementos(int *vetor) {
+    int maior = -1, segundo_maior = -1;
+
+    for (int i = 1; i <= N; i++) {
+        if (vetor[i] > maior) {
+            segundo_maior = maior;
+            maior = vetor[i];
+        } else if (vetor[i] > segundo_maior && vetor[i] != maior) {
+            segundo_maior = vetor[i];
+        }
+    }
+
+    printf("Os dois maiores elementos são: %d e %d\n", maior, segundo_maior);
+}
+
 int main() {
     int heap[N + 1];  // Vetor para armazenar os 50 elementos inteiros (índice 1 a 50)
 
     // Inicializa o gerador de números aleatórios
     srand(time(NULL));
 
-    // Preenchendo o vetor com valores aleatórios
-    for (int i = 1; i <= N; i++) {
-        heap[i] = rand() % 100;  // Gera um número aleatório entre 0 e 99
-    }
+    // Gerar valores aleatórios
+    GeraValoresAleatorios(heap);
 
     // Construir o heap
     buildHeap(heap, N);
 
     // Exibir o heap resultante
     printf("\nHeap construído:\n");
-    for (int i = 1; i <= N; i++) {
-        printf("%d ", heap[i]);
-    }
-    printf("\n");
+    imprimeVetor(heap);
+
+    // Determinar e exibir os dois maiores elementos
+    DeterminaDoisMaioresElementos(heap);
 
     return 0;
 }
